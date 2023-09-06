@@ -3,9 +3,11 @@ author: 'QGX Pagamentos'
 description: This action provides kubectl for Github Actions.
 inputs:
   kubectl-version:
-    description: Version of the kubectl CLI to use
+    description: Version of the kubectl CLI to use. Latest stable version will be used if not specified.
     required: false
-    default: v1.22.5
+  aws-iam-auth-version:
+    description: Version of the aws-iam-authenticator to use. Version v0.6.11 will be used if not specified.
+    required: false
   base64-kube-config:
     description: A base64 encoded reference to your authorization file (~/.kube/config)
     required: true
@@ -18,5 +20,6 @@ runs:
     - run: ${GITHUB_ACTION_PATH}/setup.sh
       shell: bash
       env:
+        AWS_IAM_AUTH_VERSION: ${{ inputs.aws-iam-auth-version }}
         BASE64_KUBE_CONFIG: ${{ inputs.base64-kube-config }}
         KUBE_VERSION: ${{ inputs.kubectl-version }}
