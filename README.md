@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install kubectl
-        uses: qgx-pagamentos/aws-eks-kubectl-set@v1
+        uses: qgx-pagamentos/kubectl-aws-iam-auth@v1
         with:
           base64-kube-config: ${{ secrets.KUBE_CONFIG_DATA }}
           kubectl-version: 1.28.1
