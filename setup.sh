@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -v # show current command
+[[ "${DEBUG}" == "true" ]] && set -v # show current command
 
 mkdir $GITHUB_WORKSPACE/bin
 
