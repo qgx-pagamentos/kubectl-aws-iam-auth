@@ -1,4 +1,4 @@
-name: kubectl-set
+name: kubectl-aws-iam-auth
 author: 'QGX Pagamentos'
 description: This action provides kubectl for Github Actions.
 inputs:
@@ -9,8 +9,11 @@ inputs:
     description: Version of the aws-iam-authenticator to use. Version v0.6.11 will be used if not specified.
     required: false
   base64-kube-config:
-    description: A base64 encoded reference to your authorization file (~/.kube/config)
+    description: A base64 encoded reference to your authorization file (~/.kube/config).
     required: true
+  debug:
+    description: Debug flag: [true|false].
+    default: false
 branding:
   icon: 'list'
   color: 'purple'
@@ -23,3 +26,4 @@ runs:
         AWS_IAM_AUTH_VERSION: ${{ inputs.aws-iam-auth-version }}
         BASE64_KUBE_CONFIG: ${{ inputs.base64-kube-config }}
         KUBE_VERSION: ${{ inputs.kubectl-version }}
+        DEBUG: ${{ inputs.debug }}
