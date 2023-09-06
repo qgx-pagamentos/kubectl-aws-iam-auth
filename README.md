@@ -2,6 +2,9 @@
 
 Essa Action disponibiliza o comando `kubectl` para Github Actions.
 
+
+> Você deve usar uma versão kubectl que esteja dentro de uma pequena diferença de versão do cluster control plane do Amazon EKS. Por exemplo, um cliente 1.26 kubectl funciona com clusters Kubernetes 1.25, 1.26 e 1.27.
+
 ## Uso
 
 `.github/workflows/push.yml`
@@ -18,10 +21,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install kubectl
-        uses: qgxpagamentos/kubectl-set@v1
+        uses: qgx-pagamentos/kubectl-aws-iam-auth@v1
         with:
           base64-kube-config: ${{ secrets.KUBE_CONFIG_DATA }}
-          kubectl-version: v1.22.5
+          kubectl-version: 1.28.1
+          aws-iam-auth-version: 0.6.11
 
       - name: Deploy Kubernetes cluster Service/Deployment
         run: |
